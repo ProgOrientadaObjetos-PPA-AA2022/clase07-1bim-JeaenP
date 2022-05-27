@@ -1,0 +1,6 @@
+Hospital Regional;45;140,99
+Hospital UTPL;78;500,00
+Hospital Medilab;12;150,50
+Hospital Regional;45;140,99
+Hospital UTPL;78;500,00
+Hospital Medilab;12;150,50
