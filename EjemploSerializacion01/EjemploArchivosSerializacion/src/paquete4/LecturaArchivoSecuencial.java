@@ -20,6 +20,7 @@ public class LecturaArchivoSecuencial {
     private String nombreArchivo;
     private String identificador;
     private Profesor profesorBuscado;
+    
 
     public LecturaArchivoSecuencial(String n) {
         nombreArchivo = n;

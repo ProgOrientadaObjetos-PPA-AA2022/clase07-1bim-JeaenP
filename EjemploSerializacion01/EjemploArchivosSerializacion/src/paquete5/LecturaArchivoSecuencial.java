@@ -19,6 +19,8 @@ public class LecturaArchivoSecuencial {
     private ObjectInputStream entrada;
     private ArrayList<Hospital> hospitales;
     private String nombreArchivo;
+    private String idHospital;
+    private Hospital hospitalBuscado;
 
     public LecturaArchivoSecuencial(String n) {
         nombreArchivo = n;
@@ -65,6 +67,51 @@ public class LecturaArchivoSecuencial {
             }
         }
     }
+    
+    public void establecerIdHospital(String n) {
+        idHospital = n;
+    }
+    
+    public void establecerHospitalBuscado() {
+        // 
+        
+        File f = new File(obtenerNombreArchivo());
+        if (f.exists()) {
+
+            while (true) {
+                try {
+                    Hospital registro = (Hospital) entrada.readObject();
+                    
+                    if(registro.obtenerIdHospital().equals(idHospital)){
+                        hospitalBuscado = registro;
+                        break;
+                    }
+                    
+                } catch (EOFException endOfFileException) {
+                    return; // se llegó al fin del archivo
+                    // se puede usar el break;
+                    // System.err.println("Fin de archivo: " + endOfFileException);
+
+                } catch (IOException ex) {
+                    System.err.println("Error al leer el archivo: " + ex);
+                } catch (ClassNotFoundException ex) {
+                    System.err.println("No se pudo crear el objeto: " + ex);
+                } catch (Exception ex) {
+                    System.err.println("No hay datos en el archivo: " + ex);
+
+                }
+            }
+        }
+    }
+    
+    public String obtenerIdHospital() {
+        return idHospital;
+    }
+    
+    public Hospital obtenerHospitalBuscado() {
+        return hospitalBuscado;
+    }
+    
 
     public ArrayList<Hospital> obtenerHospitales() {
         return hospitales;
